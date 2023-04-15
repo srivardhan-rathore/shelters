@@ -8,7 +8,7 @@
         <div class="row gy-4">
           <div class="col-lg-5 col-md-12 footer-info">
             <a href="{% url 'home:home' %}#hero" class="logo d-flex align-items-center">
-              <img src="{%  static 'assets/img/logo4.png' %}" alt="">
+              <img src="{%  static 'assets/img/logo4.png' %}" loading="lazy" alt="">
               <span>ShelterSearch</span>
             </a>
             <p>We help you find the best accommodation, so you don't face the hassle.</p>
@@ -35,9 +35,9 @@
           <div class="col-lg-2 col-6 footer-links">
             <h4>Our Services</h4>
             <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="{% url 'home:home' %}#values">Accommodation</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="{% url 'home:home' %}#values">Taxi Service</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="{% url 'home:home' %}#values">Hotel Booking</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="{% url 'main:accommodation' %}#values">Accommodation</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="{% url 'main:taxi' %}#values">Taxi Service</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="{% url 'main:hotel' %}#values">Hotel Booking</a></li>
 {#              <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>#}
 {#              <li><i class="bi bi-chevron-right"></i> <a href="#">Graphic Design</a></li>#}
             </ul>

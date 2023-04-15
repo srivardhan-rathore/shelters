@@ -6,7 +6,7 @@
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href="{% url 'home:home' %}#hero" class="logo d-flex align-items-center">
-        <img src="{% static 'assets/img/logo4.png' %}" width="11%" alt="">
+        <img src="{% static 'assets/img/logo4.png' %}" loading="lazy" width="11%" alt="">
         <span>ShelterSearch</span>
       </a>
         <!-- ====== Navbar ====== -->
@@ -16,7 +16,7 @@
           <li><a class="nav-link scrollto" href="{% url 'main:taxi' %}">Book Taxi</a></li>
           <li><a class="nav-link scrollto" href="{% url 'main:hotel' %}">Book Hotel</a></li>
           {% if request.user.is_authenticated %}
-          <li class="dropdown"><a><img width="25" src="{% static 'assets/img/user.png' %}"><i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a><img width="25" src="{% static 'assets/img/user.png' %}" loading="lazy"><i class="bi bi-chevron-down"></i></a>
             <ul>
               {% if request.user.is_superuser %}
                     <li class="nav-item">

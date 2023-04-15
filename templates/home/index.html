@@ -27,7 +27,7 @@
           </div>
         </div>
         <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
-          <img src="{% static 'assets/img/main-image.png' %}" class="img-fluid" alt="">
+          <img src="{% static 'assets/img/main-image.png' %}" loading="lazy" class="img-fluid" alt="">
         </div>
       </div>
     </div>
@@ -60,7 +60,7 @@
           </div>
 
           <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-            <img src="{% static 'assets/img/aboutus-image.png' %}" class="img-fluid" alt="">
+            <img src="{% static 'assets/img/aboutus-image.png' %}" loading="lazy" class="img-fluid" alt="">
           </div>
 
         </div>
@@ -83,7 +83,7 @@
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
             <div class="box">
-              <img src="{% static 'assets/img/pg.jpg' %}" class="img-fluid" alt="">
+              <img src="{% static 'assets/img/pg.jpg' %}" loading="lazy" class="img-fluid" alt="">
               <h3>Accommodation</h3>
               <p>We help you find the best Accommodation that suites you.</p>
             </div>
@@ -92,7 +92,7 @@
           <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="400">
             <div class="box">
                 <br>
-              <img src="{% static 'assets/img/taxi.jpg' %}" class="img-fluid" alt="">
+              <img src="{% static 'assets/img/taxi.jpg' %}" loading="lazy" class="img-fluid" alt="">
                 <br><br>
               <h3>Airport Taxi Service</h3>
               <p>We provide end to end taxi service within the city at the least rates available.</p>
@@ -102,7 +102,7 @@
           <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="600">
             <div class="box">
                 <br><br>
-              <img src="{% static 'assets/img/hotel.jpg' %}" class="img-fluid" alt="">
+              <img src="{% static 'assets/img/hotel.jpg' %}" loading="lazy" class="img-fluid" alt="">
                 <br><br>
               <h3>Hotel Booking</h3>
               <p>We provide the best available hotels in the nearest proximity to your Accommodation.</p>
@@ -178,16 +178,16 @@
           <div class="swiper-wrapper align-items-center">
               {% for i in partners %}
               <div class="swiper-slide">
-                  <img src="{{ i.image }}" class="img-fluid" alt="{{ i.name }}"></div>
+                  <img src="{{ i.image }}" loading="lazy" class="img-fluid" alt="{{ i.name }}"></div>
               {% endfor %}
-              <div class="swiper-slide"><img src="{% static 'assets/img/pg/bluebells.png' %}" class="img-fluid" alt=""></div>
-              <div class="swiper-slide"><img src="{% static 'assets/img/pg/zolo.jpg' %}" class="img-fluid" alt=""></div>
-              <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-3.png' %}" class="img-fluid" alt=""></div>
-              <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-4.png' %}" class="img-fluid" alt=""></div>
-              <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-5.png' %}" class="img-fluid" alt=""></div>
-              <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-6.png' %}" class="img-fluid" alt=""></div>
-              <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-7.png' %}" class="img-fluid" alt=""></div>
-              <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-8.png' %}" class="img-fluid" alt=""></div>
+              <div class="swiper-slide"><img src="{% static 'assets/img/pg/bluebells.png' %}" loading="lazy" class="img-fluid" alt=""></div>
+              <div class="swiper-slide"><img src="{% static 'assets/img/pg/zolo.jpg' %}" loading="lazy" class="img-fluid" alt=""></div>
+              <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-3.png' %}" loading="lazy" class="img-fluid" alt=""></div>
+              <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-4.png' %}" loading="lazy" class="img-fluid" alt=""></div>
+              <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-5.png' %}" loading="lazy" class="img-fluid" alt=""></div>
+              <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-6.png' %}" loading="lazy" class="img-fluid" alt=""></div>
+              <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-7.png' %}" loading="lazy" class="img-fluid" alt=""></div>
+              <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-8.png' %}" loading="lazy" class="img-fluid" alt=""></div>
           </div>
           <div class="swiper-pagination"></div>
         </div>
@@ -219,7 +219,7 @@
                   {{ testimonial.message }}
                 </p>
                 <div class="profile mt-auto">
-                  <img src="{{ testimonial.image }}" class="testimonial-img" alt="">
+                  <img src="{{ testimonial.image }}" loading="lazy" class="testimonial-img" alt="">
                   <h3>{{ testimonial.name }}</h3>
                   <h4>{{ testimonial.occupation }}</h4>
                 </div>
@@ -241,17 +241,6 @@
     {% include 'home/sections/contact-section.html' with posts=postdata %}
     <!-- ==== End Contact Section ===== -->
 
-{#    <div class="parentDisable">#}
-{#    <div class="popupPage">#}
-{#        <div class="contentBox">#}
-{#            <div class="close"></div>#}
-{#            <div class="imgBx">#}
-{#                <a href="{% url 'accounts:login' %}" class="portfolio-lightbox"><img src="{% static 'assets/img/flyer-4.png' %}" alt="flyer"></a>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#    </div>#}
-
     </main>
 
 
@@ -260,21 +249,4 @@
 
 {% block scripts %}
     <script src="{% static 'assets/vendor/php-email-form/validator.js' %}"></script>
-
-    <script>
-    const popupPage = document.querySelector('.popupPage');
-    const parent = document.querySelector('.parentDisable');
-    const close = document.querySelector('.close');
-    window.onload = function() {
-        setTimeout(function (){
-            popupPage.style.display = "block";
-            parent.style.display = "block";
-        }, 10000)
-    }
-
-    close.addEventListener('click', () => {
-        popupPage.style.display = "none";
-        parent.style.display = "none";
-    })
-    </script>
 {% endblock %}
