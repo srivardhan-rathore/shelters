@@ -1,0 +1,64 @@
+{% extends 'layouts/default/base_page.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+
+{% block content %}
+<section class="breadcrumbs">
+      <div class="container">
+        <ol>
+          <li><a href="{% url 'main:index' %}">Home</a></li>
+          <li>Profile</li>
+        </ol>
+        <h2>Profile</h2>
+
+      </div>
+</section><!-- End Breadcrumbs -->
+
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-8">
+            <div class="portfolio-details-slider swiper">
+              <div class="swiper-wrapper align-items-center">
+
+                <div class="swiper-slide">
+                  <img src="{% static 'assets/img/hotel.jpg' %}" alt="">
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="{% static 'assets/img/taxi.jpg' %}" alt="">
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="{% static 'assets/img/pg.jpg' %}" alt="">
+                </div>
+
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="portfolio-info">
+                <h3>
+              <img src="{% static 'assets/img/user.png' %}" width="7%">
+                    Profile Info</h3>
+              <ul>
+                <li><strong>First Name</strong>: {{ user.first_name }}</li>
+                <li><strong>Last Name</strong>: {{ user.last_name }}</li>
+                <li><strong>Email</strong>: {{ user.email }}</li>
+                <li><strong>Date Joined</strong>: {{ user.date_joined }}</li>
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Details Section -->
+{% endblock %}

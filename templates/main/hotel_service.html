@@ -1,0 +1,165 @@
+{% extends 'layouts/default/base_page.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block title %}
+Hotel Booking
+{% endblock %}
+
+{% block css %}
+<script type="text/javascript">
+    if (screen.width <= 768) {
+  window.location = "{% url 'main:hotel_m' %}";
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+<section id="values" class="values">
+
+      <div class="container" data-aos="fade-up">
+
+        <header class="section-header">
+            <br>
+          <p>Hotel Booking</p>
+            <br>
+          <h2>Book your hotel in the most affordable Price.</h2>
+        </header>
+
+        <div class="row">
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="box">
+                <div class="card border-primary mb-3" style="max-width: 560px; max-height: 120px;">
+                  <div class="row g-0">
+                    <div class="col-md-3">
+                      <img width="150" src="{% static 'assets/img/beds.webp' %}" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title"><b>Room options</b></h5>
+                        <p class="card-text">Different types of rooms available at each hotel, with their amenities</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card border-primary mb-3" style="max-width: 560px; max-height: 120px;">
+                  <div class="row g-0">
+                    <div class="col-md-3">
+                      <img width="150" src="{% static 'assets/img/budget.webp' %}" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title"><b>Search functionality</b></h5>
+                      <p class="card-text">Easy to users to search for hotels by location, price and other relevant criteria</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card border-primary mb-3" style="max-width: 560px; max-height: 120px;">
+                  <div class="row g-0">
+                    <div class="col-md-3">
+                      <img width="150" src="{% static 'assets/img/booking.webp' %}" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title"><b>Booking process</b></h5>
+                        <p class="card-text">Make the booking process as simple and streamlined as possible</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="box">
+                {% bootstrap_messages %}
+                <form action="{% url 'main:hotel' %}" method="post" role="form">
+                <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+              <div class="row gy-4">
+
+                  <div class="col-md-6">
+                      <label class="form-label"><b>Location</b></label>
+                    <input type="text" id="autocomplete" class="form-control" name="address" placeholder="Ex - Kormangala, Bengaluru" required>
+                  </div>
+
+                <div class="col-md-6">
+                    <label class="form-label" for="accommodation"><b>Preferred Budget</b></label>
+                    <select name="budget" class="form-control" id="accommodation" required>
+                        <option value disabled selected hidden>Select budget</option>
+                        <option value="0 - 1500" >0 - 1000</option>
+                        <option value="1000 - 1500" >1000 - 1500</option>
+                        <option value="1500 - 2500" >1500 - 2500</option>
+                        <option value="2500 and above" >2500 and above</option>
+                    </select>
+                </div>
+
+
+                  <div class="col-md-6">
+                      <label class="form-label"><b>Check in Date</b></label>
+                    <input type="date" class="form-control" name="check_in_date" required>
+                  </div>
+
+                  <div class="col-md-6">
+                      <label class="form-label"><b>Check out Date</b></label>
+                    <input type="date" class="form-control" name="check_out_date" required>
+                  </div>
+
+                <div class="col-md-6">
+                    <label class="form-label" for="occupancy"><b>Rooms</b></label>
+                        <select name="room" class="form-control" id="occupancy" required>
+                            <option value="1" selected>1 Room</option>
+                            <option value="2">2 Room</option>
+                            <option value="3">3 Room</option>
+                        </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label" for="people"><b>People</b></label>
+                        <select name="people" class="form-control" id="people" required>
+                            <option value="1">1 Adult</option>
+                            <option value="2" selected>2 Adults</option>
+                            <option value="3">3 or more</option>
+                        </select>
+                </div>
+                <div></div>
+                <div class="col-md-12 text-center">
+                  <button type="submit" value="Submit" class="btn btn-primary">Find Hotel</button>
+                </div>
+              </div>
+            </form>
+            </div>
+        <button class="btn btn-primary col-3 offset-md-9 mt-3">
+            <span>Book Taxi</span>
+        </button>
+          </div>
+
+        </div>
+      </div>
+    <div class="container">
+    </div>
+
+    </section>
+
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9V0M-2vgBWCAPEjp4tEKNfU_yk0kyCI8&libraries=places&callback=initAutocomplete">
+  </script>
+  <script>
+    let autocomplete;
+    var bangaloreBounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(12.864162, 77.438610),
+        new google.maps.LatLng(13.139807, 77.711895));
+    function initAutocomplete() {
+        autocomplete = new google.maps.places.Autocomplete(
+            document.getElementById('autocomplete'),
+            {
+                bounds: bangaloreBounds,
+                strictBounds: true,
+                // types: ['university', 'locality', 'landmark', 'neighborhood', 'street_address'],
+                componentRestrictions: {'country': 'IN'},
+            });
+    }
+    </script>
+{% endblock %}

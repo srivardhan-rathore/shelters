@@ -1,0 +1,209 @@
+{% extends 'layouts/default/base_page_m.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+
+{% block title %}
+Accommodation
+{% endblock %}
+
+{% block css %}
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script type="text/javascript">
+    if (screen.width > 768) {
+  window.location = "{% url 'main:accommodation' %}";
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+<section id="values" class="values">
+
+      <div class="container" data-aos="fade-up">
+
+        <header class="section-header">
+            <br>
+          <p>Book PG/Flats</p>
+            <br>
+          <h2>Find your Pg/Flats in one go.</h2>
+        </header>
+
+        <div class="row">
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="box" style="padding: 1px 1px;">
+                    <div class="card border-primary" style="flex-direction: row">
+                  <img src="{% static 'assets/img/security-camera.webp' %}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <div class="test-section">
+                        <h5 class="card-title"><b>Security</b></h5>
+                      <p class="card-text">Accommodations are secure and safe for all the individuals</p>
+                      </div>
+                  </div>
+                </div>
+                <div class="card border-primary" style="flex-direction: row">
+                  <img src="{% static 'assets/img/thumb-ups.webp' %}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <div class="test-section">
+                        <h5 class="card-title"><b>Convenience</b></h5>
+                      <p class="card-text">Accommodations are located in areas close to public transport.</p>
+                      </div>
+                  </div>
+                </div> <div class="card border-primary" style="flex-direction: row">
+                  <img src="{% static 'assets/img/budget.webp' %}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <div class="test-section">
+                        <h5 class="card-title"><b>Cost Effective</b></h5>
+                      <p class="card-text">Well maintained homes at budget friendly prices.</p>
+                      </div>
+                  </div>
+                </div>
+
+            </div>
+        </div>
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="box">
+                {% bootstrap_messages %}
+                <form action="{% url 'main:accommodation' %}" method="post" role="form">
+                <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                <input type="hidden" name="order_id" value="{{ order_id }}">
+              <div class="row gy-4">
+                <div class="col-md-6">
+                    <label class="form-label" for="accommodation"><b>Accommodation Type</b></label>
+                    <select name="accommodation_type" class="form-control" id="accommodation" required>
+                        <option value disabled selected hidden>Select Type</option>
+                        <option value="Pg" >Paying Guest</option>
+                        <option value="Flat">Flat</option>
+                        <option value="Hostel">Hostel</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label" for="occupancy"><b>Occupancy</b></label>
+                        <select name="occupancy" class="form-control" id="occupancy" required>
+                            <option value disabled selected hidden>SELECT Accommodation First</option>
+                        </select>
+                </div>
+                <div id="gender"></div>
+
+                  <div class="col-md-6">
+                      <label class="form-label"><b>Move in Date</b></label>
+                    <input type="date" class="form-control" name="move_in_date" required>
+                  </div>
+
+                <div class="col-md-12 ">
+                    <label class="form-label"><b>Location/Area</b></label>
+                  <input type="text" class="form-control" id="autocomplete" name="address" placeholder="Ex: Kormangala, Bengaluru" required>
+                </div>
+                <div class="col"></div>
+                <div class="col-md-12 text-center">
+                  <button type="submit" value="Submit" class="btn btn-primary">Find Accommodation</button>
+                </div>
+              </div>
+            </form>
+            </div>
+              <div class="container">
+        <button class="btn btn-primary col-5 offset-md-10 mt-3" style="flex-direction: row">
+            <span><a style="color: white" href="{% url 'main:taxi' %}">Book Taxi</a></span>
+        </button>
+                  </div>
+          </div>
+
+        </div>
+      </div>
+    <div class="container">
+    </div>
+
+    </section>
+    <div class="bottom-bar">
+      <a href="{% url 'main:index' %}">
+      <ion-icon name="home-outline" class="icon" onclick="change(this)">
+      </ion-icon>
+      </a>
+      <a href="{% url 'main:taxi_m' %}">
+      <ion-icon name="car-outline" class="icon" onclick="change(this)">
+      </ion-icon>
+      </a>
+      <a href="{% url 'main:accommodation_m' %}">
+      <ion-icon name="bed-outline" class="icon active" onclick="change(this)">
+      </ion-icon>
+      </a>
+      <a href="{% url 'main:hotel_m' %}">
+      <ion-icon name="business-outline" class="icon" onclick="change(this)">
+      </ion-icon>
+      </a>
+    </div>
+    <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9V0M-2vgBWCAPEjp4tEKNfU_yk0kyCI8&libraries=places&callback=initAutocomplete">
+    </script>
+  <script>
+    let autocomplete;
+    var bangaloreBounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(12.864162, 77.438610),
+        new google.maps.LatLng(13.139807, 77.711895));
+    function initAutocomplete() {
+      autocomplete = new google.maps.places.Autocomplete(
+              document.getElementById('autocomplete'),
+              {
+                bounds: bangaloreBounds,
+                strictBounds: true,
+                // types: ['university', 'locality', 'landmark', 'neighborhood', 'street_address'],
+                componentRestrictions: {'country': 'IN'},
+                // fields: ['place_id', 'geometry', 'name']
+              });
+      autocomplete.addListener('place_changed', onPlaceChanged);
+    }
+    function onPlaceChanged() {
+      var place = autocomplete.getPlace();
+      if (!place.geometry) {
+        document.getElementById('autocomplete').placeholder = 'Enter a Place';
+      } else {
+        document.getElementById('details').innerHTML = place.name;
+      }
+    }
+    </script>
+<script>
+  document.getElementById("accommodation").addEventListener("change", function() {
+  var journey = document.getElementById("accommodation").value;
+  var color = document.getElementById("occupancy");
+  var gender = document.getElementById("gender");
+
+  if (journey === "Pg") {
+    color.innerHTML = "<option value='single'>Single Sharing</option>" +
+        "<option value='Double'>Double Sharing</option>" +
+        "<option value='Triple'>Triple Sharing</option>";
+    gender.outerHTML = "<div class='col-md-6'>" +
+        "<label class='form-label'><b>Gender</b></label>" +
+        "                    <select name='gender' class='form-control' required>" +
+        "                        <option value disabled selected hidden>Gender</option>" +
+        "                        <option value='Male'>Male</option>" +
+        "                        <option value='Female'>Female</option>" +
+        "                        <option value='Other'>Other</option>" +
+        "                    </select>" +
+        "</div>";
+  } else if (journey === "Flat") {
+    color.innerHTML = "<option value='1 BHK'>1 BHK</option>" +
+        "<option value='2 BHK'>2 BHK</option>" +
+        "<option value='3 BHK'>3 BHK</option>" +
+        "<option value='4 BHK'>4 BHK</option>";
+    gender.innerHTML = "<div id='gender'></div>";
+  } else if (journey === "Hostel") {
+    color.innerHTML = "<option value='single'>Single Sharing</option>" +
+        "<option value='Double'>Double Sharing</option>" +
+        "<option value='Triple'>Triple Sharing</option>";
+  } else {
+    color.innerHTML = ""; // default to no options
+  }
+});
+</script>
+<script>
+    function change(item){
+        const buttons = document.querySelectorAll('ion-icon');
+        buttons.forEach(function(obj){
+            obj.classList.remove("active");
+        });
+        item.classList.add("active");
+    }
+</script>
+{% endblock %}
