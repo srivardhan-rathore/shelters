@@ -1,6 +1,7 @@
 {% extends 'layouts/default/base_page.html' %}
 {% load static %}
 {% load bootstrap4 %}
+{% bootstrap_css %}
 
 {% block title %}
 Hotel Booking
@@ -12,6 +13,7 @@ Hotel Booking
   window.location = "{% url 'main:hotel_m' %}";
     }
 </script>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9V0M-2vgBWCAPEjp4tEKNfU_yk0kyCI8&libraries=places"></script>
 {% endblock %}
 
 {% block content %}
@@ -100,12 +102,12 @@ Hotel Booking
 
                   <div class="col-md-6">
                       <label class="form-label"><b>Check in Date</b></label>
-                    <input type="date" class="form-control" name="check_in_date" required>
+                    <input type="date" id="check-in-date" class="form-control" name="check_in_date" required>
                   </div>
 
                   <div class="col-md-6">
                       <label class="form-label"><b>Check out Date</b></label>
-                    <input type="date" class="form-control" name="check_out_date" required>
+                    <input type="date" id="check-out-date" class="form-control" name="check_out_date" required>
                   </div>
 
                 <div class="col-md-6">
@@ -143,23 +145,26 @@ Hotel Booking
 
     </section>
 
-  <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9V0M-2vgBWCAPEjp4tEKNfU_yk0kyCI8&libraries=places&callback=initAutocomplete">
-  </script>
-  <script>
-    let autocomplete;
-    var bangaloreBounds = new google.maps.LatLngBounds(
-        new google.maps.LatLng(12.864162, 77.438610),
-        new google.maps.LatLng(13.139807, 77.711895));
-    function initAutocomplete() {
-        autocomplete = new google.maps.places.Autocomplete(
-            document.getElementById('autocomplete'),
-            {
-                bounds: bangaloreBounds,
-                strictBounds: true,
-                // types: ['university', 'locality', 'landmark', 'neighborhood', 'street_address'],
-                componentRestrictions: {'country': 'IN'},
-            });
-    }
+    <script>
+    const checkInDateInput = document.getElementById("check-in-date");
+    const checkOutDateInput = document.getElementById("check-out-date");
+
+    const today = new Date().toISOString().split("T")[0];
+    checkInDateInput.min = today;
+    checkOutDateInput.min = today;
+
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString().slice(0, 10);
+    checkInDateInput.value = formattedDate;
+    checkOutDateInput.value = checkInDateInput.value;
+    const checkInDate = new Date(checkInDateInput.value);
+    checkOutDateInput.valueAsDate = new Date(checkInDate.getTime() + 86400000);
+
+
+    checkInDateInput.addEventListener("input", () => {
+      checkOutDateInput.min = checkInDateInput.value;
+      const checkInDate1 = new Date(checkInDateInput.value);
+      checkOutDateInput.valueAsDate = new Date(checkInDate1.getTime() + 86400000);
+    });
     </script>
 {% endblock %}

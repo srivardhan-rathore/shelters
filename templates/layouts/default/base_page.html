@@ -89,6 +89,18 @@
 
     <!-- Template Main JS File -->
     <script src="{% static 'assets/js/main.js' %}"></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9V0M-2vgBWCAPEjp4tEKNfU_yk0kyCI8&libraries=places"></script>
+    <script>
+    function initialize() {
+        var input = document.getElementById('autocomplete');
+        new google.maps.places.Autocomplete(
+            input,
+            {
+                componentRestrictions: {'country': 'IN'}
+            });
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
 
 </body>
 </html>

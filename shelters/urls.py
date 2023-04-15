@@ -6,7 +6,7 @@ urlpatterns = [
 
     # App Urls
     path('', include('home.urls')),
-    path('dashboard/', include(('main.urls', 'main'), namespace='main')),
+    path('app/', include(('main.urls', 'main'), namespace='main')),
     path('accounts/', include('accounts.urls')),
 
     # Auth Provider

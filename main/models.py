@@ -34,7 +34,7 @@ class AccommodationService(models.Model):
 
 
 class HotelService(models.Model):
-    client = models.ForeignKey(User, on_delete=models.CASCADE)
+    client = models.OneToOneField(User, on_delete=models.CASCADE)
     budget = models.CharField(max_length=20)
     room = models.CharField(max_length=15)
     people = models.CharField(max_length=15)
