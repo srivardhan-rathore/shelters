@@ -24,10 +24,3 @@ class ProfileView(LoginRequiredMixin, FormView):
 
     def get(self, request, **kwargs):
         return render(request, self.template_name)
-
-    # def get_initial(self):
-    #     user = self.request.user
-    #     initial = super().get_initial()
-    #     initial['first_name'] = user.first_name
-    #     initial['last_name'] = user.last_name
-    #     return initial
