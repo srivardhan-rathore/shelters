@@ -139,6 +139,15 @@
                 width: 30px;
                 object-fit: cover;
             }
+            button.google{
+                border: 1px solid #CACACA;
+                background-color: #4071f4 ;
+            }
+            button.google span{
+                font-weight: 500;
+                opacity: 1;
+                color: #dadee8;
+            }
             a.google{
                 border: 1px solid #CACACA;
                 background-color: #4071f4 ;
@@ -172,23 +181,16 @@
                     </div>
                     <div class="line"></div>
                 </div>
-
-
-                <div class="media-options">
-                    <a href="{% url 'social:begin' 'google-oauth2' %}" class="field google">
-                        <img src="https://img.icons8.com/color/256/google-logo.png" loading="lazy" alt="" class="google-img">
-                        <span>Sign in with Google</span>
-                    </a>
-                </div>
+                <form action="{% url 'accounts:check' %}" method="post" role="form">
+                <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                <input type="tel" maxlength="10" class="field" style="border-color: #0c63e4; padding-left: 20px" placeholder="Add Phone Number">
 
                 <div class="media-options">
-                    <a href="{% url 'social:begin' 'facebook' %}" class="field facebook">
-                        <i class='bx bxl-facebook facebook-icon'></i>
-                        <span>Login with Facebook</span>
-                    </a>
+                    <button class="field google" type="submit">
+                        <span>Add Phone Number</span>
+                    </button>
                 </div>
-
-
+                </form>
             </div>
         </section>
     </body>

@@ -82,7 +82,7 @@ class EmailThread(threading.Thread):
         threading.Thread.__init__(self)
 
     def run(self):
-        message = EmailMessage(self.subject, self.html_content, settings.CONTACT_EMAIL,
+        message = EmailMessage(self.subject, self.html_content, settings.DEFAULT_FROM_EMAIL,
                                self.recipient_list)
         message.content_subtype = "html"
         message.send(fail_silently=False)

@@ -10,7 +10,6 @@ DEBUG = config('DEBUG', cast=bool, default=False)
 
 ALLOWED_HOSTS = ["*"]
 
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -30,6 +29,7 @@ INSTALLED_APPS = [
     'accounts',
     'home',
     'main',
+    'database',
 ]
 
 MIDDLEWARE = [
@@ -65,7 +65,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'shelters.wsgi.application'
 
 # Database
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -91,8 +90,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LOGIN_URL = 'accounts:login'
-LOGIN_REDIRECT_URL = "main:taxi"
-
+LOGIN_REDIRECT_URL = "accounts:check"
 
 # Internationalization
 
@@ -112,7 +110,6 @@ STATIC_ROOT = BASE_DIR / "static"
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage" \
                       or "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_HOST = config('EMAIL_HOST')
@@ -120,8 +117,7 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = config('EMAIL_PORT', cast=int)
-EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
-
+EMAIL_USE_SSL = config('EMAIL_USE_TLS', cast=bool)
 
 # Django's authentication settings
 AUTHENTICATION_BACKENDS = [
@@ -130,7 +126,7 @@ AUTHENTICATION_BACKENDS = [
     'social_core.backends.facebook.FacebookOAuth2',
 ]
 
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'main:taxi'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'accounts:check'
 
 # Social auth settings
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
@@ -138,5 +134,3 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 
 SOCIAL_AUTH_FACEBOOK_KEY = config('SOCIAL_AUTH_FACEBOOK_KEY')
 SOCIAL_AUTH_FACEBOOK_SECRET = config('SOCIAL_AUTH_FACEBOOK_SECRET')
-
-

@@ -105,7 +105,8 @@ class TaxiServiceViewM(TemplateView):
         booking.order_id = f'{now.year}{now.month}{now.day}-{uuid.uuid4().hex}'
         booking.client = self.request.user
         booking.save()
-        messages.success(request, "Your request for Airport taxi has been placed successfully. You will receive a confirmation email shortly.")
+        messages.success(request, "Your request for Airport taxi has been placed successfully. "
+                                  "You will receive a confirmation email shortly.")
         return redirect("main:taxi_m")
 
 

@@ -45,8 +45,3 @@ class HotelService(models.Model):
     date = models.CharField(default="Yes", max_length=23)
     checked = models.CharField(max_length=5, blank=True, choices=(("Y", "Yes"), ("N", "No")))
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-
-
-from django.db import models
-
-# Create your models here.
