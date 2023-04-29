@@ -4,7 +4,7 @@ from django.contrib.auth.views import LoginView, LogoutView as BaseLogoutView
 from django.views.generic import FormView, TemplateView
 from django.conf import settings
 from django.core.mail import EmailMessage
-from .models import UserInfo
+from . import models
 import threading
 
 
@@ -24,7 +24,7 @@ class CheckNewUser(TemplateView):
     def post(self, request):
         user = request.user
         phone = request.POST.get('phone')
-        user_info = UserInfo.objects.create(user=user, phone=phone)
+        user_info = models.UserInfo.objects.create(user=user, phone=phone)
         user_info.save()
         return redirect("main:taxi")
 
