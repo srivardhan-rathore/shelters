@@ -32,6 +32,7 @@ class College(models.Model):
 class PayingGuest(models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
+    type = models.CharField(max_length=10, choices=(('M', 'Male'), ('F', 'Female'), ('C', 'CoLive')), default='M')
     website = models.CharField(max_length=100, blank=True)
     price_range = models.CharField(max_length=100, default="10000 to 20000")
     division = models.ForeignKey(Division, on_delete=models.SET_NULL, null=True)
