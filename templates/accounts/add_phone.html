@@ -183,7 +183,7 @@
                 </div>
                 <form action="{% url 'accounts:check' %}" method="post" role="form">
                 <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
-                <input type="tel" maxlength="10" class="field" style="border-color: #0c63e4; padding-left: 20px" placeholder="Add Phone Number">
+                <input type="tel" maxlength="10" name="phone" class="field" style="border-color: #0c63e4; padding-left: 20px" placeholder="Add Phone Number" required>
 
                 <div class="media-options">
                     <button class="field google" type="submit">

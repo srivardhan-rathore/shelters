@@ -29,6 +29,7 @@ class PayingGuestAdmin(admin.ModelAdmin):
     list_display = (
         'name',
         'location',
+        'type',
         'division',
         'city',
         'state',
