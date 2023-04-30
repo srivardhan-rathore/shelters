@@ -8,7 +8,7 @@ from . import models
 import threading
 
 
-class CheckNewUser(TemplateView):
+class CheckNewUser(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/add_phone.html'
 
     def get(self, request, *args, **kwargs):
@@ -18,6 +18,8 @@ class CheckNewUser(TemplateView):
             print("yes")
             EmailThread("Welcome To ShelterSearch", f"Hey {request.user.first_name},"
                                                     f" Welcome to ShelterSearch", [request.user.email]).start()
+            return render(request, self.template_name)
+        elif not models.UserInfo.objects.filter(user=request.user).exists():
             return render(request, self.template_name)
         return redirect('main:taxi')
 
@@ -43,11 +45,11 @@ class LogoutView(LoginRequiredMixin, BaseLogoutView):
     template_name = 'accounts/logout.html'
 
 
-class ProfileView(LoginRequiredMixin, FormView):
+class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/profile.html'
 
-    def get(self, request, **kwargs):
-        return render(request, self.template_name)
+    # def get(self, request, **kwargs):
+    #     return render(request, self.template_name)
 
 
 class EmailThread(threading.Thread):
